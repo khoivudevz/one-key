@@ -37,7 +37,10 @@ const GetWelcomeMessage = () => {
 
 	const loggedWelcomeMessage = (
 		<div className='mb-[50px]'>
-			<h1>Welcome back, {user?.username} 🔑</h1>
+			<h1>
+				Welcome back, <span className='text-yellow-500'>{user?.username}</span>{' '}
+				🔑
+			</h1>
 			<hr className='mb-[25px]' />
 			<div className='guide-message'>
 				<p>Type "help" to get started ℹ️</p>

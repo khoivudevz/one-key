@@ -1,12 +1,10 @@
 import GetCommandConfig from '@/configs/command.config'
 import GetPromptConfig from '@/configs/prompt.config'
 import GetWelcomeMessage from '@/configs/welcome-message.config'
-
 import useUserStore from '@/store/useUser.store'
-
 import {ReactTerminal} from 'react-terminal'
 
-const HomeView = () => {
+const AuthView = () => {
 	const {authLoading} = useUserStore()
 
 	return (
@@ -26,13 +24,8 @@ const HomeView = () => {
 			prompt={GetPromptConfig()}
 			welcomeMessage={GetWelcomeMessage()}
 			enableInput={!authLoading}
-			errorMessage={
-				<p className='text-error-message'>
-					Not found command, type "help" to view all available commands.
-				</p>
-			}
 		/>
 	)
 }
 
-export default HomeView
+export default AuthView

@@ -12,6 +12,9 @@
 	.text-success-message {
 		@apply text-green-500 my-[10px];
 	}
+	.help-list {
+		@apply text-white space-y-[10px];
+	}
 }
 
 :root {

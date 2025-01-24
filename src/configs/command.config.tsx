@@ -1,3 +1,4 @@
+import useData from '@/hooks/useData'
 import {cookieKey, cookieServices} from '@/services/cookie.service'
 import useUserStore from '@/store/useUser.store'
 import {User} from '@/types/common.type'
@@ -15,6 +16,8 @@ const GetCommandConfig = () => {
 		setUser,
 		setId,
 	} = useUserStore()
+
+	const {groupData} = useData()
 
 	const [email, setEmail] = useState<string | null>(null)
 
@@ -80,13 +83,28 @@ const GetCommandConfig = () => {
 		}
 	}
 
+	const handleCloseBrowser = () => {
+		window.open('about:blank', '_self')
+		window.close()
+	}
+
+	const handleGetGroup = () => {
+		return (
+			<ul className='help-list'>
+				{groupData?.map((group) => {
+					return <li>{group.name}</li>
+				})}
+			</ul>
+		)
+	}
+
 	const generalCommandConfig = {
 		// maker
 		madeby: 'made by khoivudevz',
 
 		// close windows
-		quit: 'quit',
-		exit: 'exit',
+		quit: () => handleCloseBrowser(),
+		exit: () => handleCloseBrowser(),
 	}
 
 	const unAuthCommandConfig = {
@@ -124,7 +142,6 @@ const GetCommandConfig = () => {
 
 		email: (email: string) => {
 			setEmail(email)
-			return `Email ${email}`
 		},
 
 		password: (password: string) => {
@@ -141,9 +158,11 @@ const GetCommandConfig = () => {
 
 		help: (
 			<div>
-				<ul>
+				<ul className='help-list'>
 					<li>register: Register a new account</li>
 					<li>login: Login to your account</li>
+					<li>clear: Clear the terminal</li>
+					<li>quit, exit: Quit the terminal</li>
 				</ul>
 			</div>
 		),
@@ -157,34 +176,48 @@ const GetCommandConfig = () => {
 			cookieServices.removeCookie(cookieKey.USER_INFO)
 			setUser(null)
 			setId(uuidv4())
-			return 'logout success ✅'
+			return <p className='text-success-message'>Logout success ✅</p>
 		},
 
+		// group list
+		'group-list': () => handleGetGroup(),
+
+		// create new group
+		'create-group': 'create-group',
+
+		// delete group
+		'delete-group': 'delete-group',
+
 		// create new key
-		create_key: 'create-key',
+		'create-key': 'create-key',
 
 		// delete key
-		delete_key: 'delete-key',
+		'delete-key': 'delete-key',
 
 		// list key
-		key_list: 'key-list',
+		'key-list': 'key-list',
 
 		// show key
-		show_key: 'show-key',
+		'show-key': 'show-key',
 
 		// hide key
-		hide_key: 'hide-key',
+		'hide-key': 'hide-key',
 
 		// help list
 		help: (
 			<div>
-				<ul>
-					<li>logout: Logout from your account</li>
-					<li>create_key: Create a new key</li>
-					<li>delete_key: Delete a key</li>
-					<li>key_list: List all keys</li>
-					<li>show_key: Show password key</li>
-					<li>hide_key: Hide password key</li>
+				<ul className='help-list'>
+					<li>group-list: List all groups</li>
+					<li>create-group: Create a new group</li>
+					<li>delete-group: Delete a group</li>
+					<li>key-list: List all keys</li>
+					<li>create-key: Create a new key</li>
+					<li>delete-key: Delete a key</li>
+					<li>show-key: Show password key</li>
+					<li>hide-key: Hide password key</li>
+					<li>clear: Clear the terminal</li>
+					<li>logout: Logout</li>
+					<li>quit, exit: Quit the terminal</li>
 				</ul>
 			</div>
 		),

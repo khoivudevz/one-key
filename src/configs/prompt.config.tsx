@@ -7,11 +7,11 @@ const GetPromptConfig = () => {
 
 	switch (true) {
 		case logging:
-			return 'Login ~ '
+			return '🔒 Login ~ '
 		case registering:
-			return 'Register ~ '
+			return '🔑 Register ~ '
 		default:
-			return '~ '
+			return '🏠 ~ '
 	}
 }
 
