@@ -1,18 +1,31 @@
+import {
+	localStorageKey,
+	localStorageServices,
+} from '@/services/localStorage.service'
+import useActionStore from '@/store/useAction.store'
+
 import useUserStore from '@/store/useUser.store'
 
 const GetPromptConfig = () => {
-	const {logging, registering, authLoading} = useUserStore()
+	const localData = localStorageServices.getLocalStorage<string>(
+		localStorageKey.data
+	)
+	const {code} = useUserStore()
+	const {isKeyEditing, isKeyCreating} = useActionStore()
 
-	if (authLoading) return 'Loading...'
-
-	switch (true) {
-		case logging:
-			return '🔒 Login ~ '
-		case registering:
-			return '🔑 Register ~ '
-		default:
-			return '🏠 ~ '
+	if (localData && !code) {
+		return `🔒 ~`
 	}
+
+	if (isKeyEditing) {
+		return '🪄 ~ '
+	}
+
+	if (isKeyCreating) {
+		return '✍️ ~ '
+	}
+
+	return '🔑 ~ '
 }
 
 export default GetPromptConfig

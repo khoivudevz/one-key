@@ -1,7 +1,32 @@
+import {
+	localStorageKey,
+	localStorageServices,
+} from '@/services/localStorage.service'
 import useUserStore from '@/store/useUser.store'
 
 const GetWelcomeMessage = () => {
-	const {user, logging, registering} = useUserStore()
+	const {code, user} = useUserStore()
+	const localData = localStorageServices.getLocalStorage<string>(
+		localStorageKey.data
+	)
+
+	const nickname = localStorageServices.getLocalStorage<string>(
+		localStorageKey.nickname
+	)
+
+	const authMessage = (
+		<div className='mb-[50px]'>
+			<h1>
+				Welcome back, <span className='text-yellow-500'>{nickname}</span> 🔑
+			</h1>
+			<hr className='mb-[25px]' />
+			<div className='guide-message'>
+				<p>To unlock your data type: code "your code"</p>
+				<p>Type "logout" to logout</p>
+				<p>Type "help" to get started ℹ️</p>
+			</div>
+		</div>
+	)
 
 	const defaultWelcomeMessage = (
 		<div className='space-y-[5px] mb-[50px]'>
@@ -13,23 +38,11 @@ const GetWelcomeMessage = () => {
 				you manage multiple accounts in a secure and efficient way.
 			</p>
 
-			<h1
-				className='text-center overflow-hidden before:h-[1px] after:h-[1px] after:bg-white 
-				after:inline-block after:relative after:align-middle after:w-1/4 
-				before:bg-white before:inline-block before:relative before:align-middle 
-				before:w-1/4 before:right-2 after:left-2 text-xl p-4'
-			>
-				{!logging && !registering
-					? 'You can login or register to continue ✨'
-					: logging
-						? 'LOGIN YOUR ACCOUNT 🔓'
-						: 'REGISTER YOUR ACCOUNT ✍️'}
-			</h1>
-			{!logging && !registering && (
+			{!code && (
 				<div className='guide-message'>
 					<p>Type "help" to get started ℹ️</p>
-					<p>Type "register" to register a new account 📝</p>
-					<p>Type "login" to login to your account 🚪</p>
+					<p>Type "new" to creat a new data 📝</p>
+					<p>Type "import" to import to your account 🚪</p>
 				</div>
 			)}
 		</div>
@@ -38,17 +51,22 @@ const GetWelcomeMessage = () => {
 	const loggedWelcomeMessage = (
 		<div className='mb-[50px]'>
 			<h1>
-				Welcome back, <span className='text-yellow-500'>{user?.username}</span>{' '}
-				🔑
+				Good to see you,{' '}
+				<span className='text-yellow-500'>{user?.nickname}</span> 🔑
 			</h1>
 			<hr className='mb-[25px]' />
 			<div className='guide-message'>
 				<p>Type "help" to get started ℹ️</p>
+				<p>Type "logout" to logout</p>
 			</div>
 		</div>
 	)
 
-	return user ? loggedWelcomeMessage : defaultWelcomeMessage
+	return localData && !code
+		? authMessage
+		: code
+			? loggedWelcomeMessage
+			: defaultWelcomeMessage
 }
 
 export default GetWelcomeMessage

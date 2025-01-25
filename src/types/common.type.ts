@@ -3,9 +3,7 @@ export type JSONObject = {
 }
 
 export type User = {
-	id: string
-	username: string
-	email: string
+	nickname: string
 }
 
 export type Group = {
@@ -16,7 +14,12 @@ export type Group = {
 
 export type Key = {
 	id: string
-	name: string
+	username: string
 	description: string
-	groupId: string
+	password: string
+}
+
+export type LocalStorageData = {
+	user: User
+	key: Key[]
 }

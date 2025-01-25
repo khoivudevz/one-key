@@ -1,19 +1,28 @@
-import {Group, Key} from '@/types/common.type'
-import useFetch from './useFetch'
-import {delay} from '@/utils/delay'
+import {
+	localStorageKey,
+	localStorageServices,
+} from '@/services/localStorage.service'
+import useKeyStore from '@/store/useKey.store'
+import useUserStore from '@/store/useUser.store'
+import {encrypt} from '@/utils/auth'
+import {useEffect} from 'react'
 
 const useData = () => {
-	const {data: groupData} = useFetch<Group[]>(async (): Promise<Group[]> => {
-		await delay(2000)
-		return await import('@/data/group.data').then((mod) => mod.default)
-	})
+	const {key} = useKeyStore()
+	const {code, user} = useUserStore()
 
-	const {data: keyData} = useFetch<Key[]>(async (): Promise<Key[]> => {
-		await delay(2000)
-		return await import('@/data/key.data').then((mod) => mod.default)
-	})
+	useEffect(() => {
+		if (key && code) {
+			const storageData = {
+				user,
+				key,
+			}
 
-	return {groupData, keyData}
+			const encryptedKey = encrypt(JSON.stringify(storageData), code)
+
+			localStorageServices.setLocalStorage(encryptedKey, localStorageKey.data)
+		}
+	}, [key, code, user])
 }
 
 export default useData

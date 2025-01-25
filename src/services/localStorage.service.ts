@@ -1,5 +1,6 @@
 export const localStorageKey = {
-	USER_INFOR: 'USER_INFOR',
+	data: 'data',
+	nickname: 'nickname',
 }
 
 export const localStorageServices = {
@@ -8,7 +9,7 @@ export const localStorageServices = {
 		localStorage.setItem(key, json)
 	},
 	getLocalStorage: <T>(key: string) => {
-		if (localStorage.getItem(localStorageKey.USER_INFOR)) {
+		if (localStorage.getItem(key)) {
 			const json = localStorage.getItem(key)
 			if (!json) return null
 			return JSON.parse(json) as T

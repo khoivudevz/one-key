@@ -1,20 +1,21 @@
-# Turbo Setup React + TypeScript + Tailwind
+````markdown
+One Key - Secure Password Manager 🔑
 
-A modern and efficient React starter template with TypeScript, Tailwind CSS, and various development tools pre-configured.
+A secure, terminal-style password manager built with React, TypeScript, and modern web technologies. Store and manage your passwords with encryption in an intuitive command-line interface.
 
 ## 🚀 Features
 
-- ⚡️ [React 19](https://react.dev/) with [TypeScript](https://www.typescriptlang.org/)
-- 🎨 [Tailwind CSS](https://tailwindcss.com/) for styling
-- 📦 [Vite](https://vitejs.dev/) for fast development and building
-- 🔍 [ESLint](https://eslint.org/) for code linting
-- 💅 [Prettier](https://prettier.io/) for code formatting
-- 🐶 [Husky](https://typicode.github.io/husky/) for Git hooks
-- 📋 [Commitlint](https://commitlint.js.org/) for conventional commits
-- 🏪 [Zustand](https://zustand-demo.pmnd.rs/) for state management
-- 🌐 [React Router](https://reactrouter.com/) for routing
-- 📅 [Day.js](https://day.js.org/) for date manipulation
-- 🔄 [Axios](https://axios-http.com/) for HTTP requests
+- 🔐 Secure password encryption using AES
+- 💻 Terminal-style interface
+- 📁 Import/Export functionality
+- 🔑 Password management with descriptions
+- 🎨 Dark theme with customizable UI
+- ⚡️ Built with React 19 and TypeScript
+- 🎨 Styled with Tailwind CSS
+- 📦 Powered by Vite
+- 🏪 State management with Zustand
+- 🔄 File handling with drag & drop
+- 🕒 Date handling with Day.js
 
 ## 🛠️ Prerequisites
 
@@ -23,77 +24,75 @@ A modern and efficient React starter template with TypeScript, Tailwind CSS, and
 
 ## 📦 Installation
 
-# Clone the repository
-
-```
-git clone https://github.com/khoivudevz/turbo-setup-react-ts-tailwind
-```
-
-# Install dependencies
-
-```
+```bash
+Clone the repository
+git clone https://github.com/yourusername/one-key
+Install dependencies
 bun install
-```
-
 ## 🚀 Development
-
-# Start development server
-
-```
+bash
+Start development server
 bun dev # Development mode
 bun dev:stg # Staging mode
 bun dev:prod # Production mode
-```
-
-# Start development server
-
-```
+Build for production
 bun build # Production build
 bun build:stg # Staging build
 bun build:dev # Development build
 ```
 
-## 📁 Development
+## 💻 Terminal Commands
 
-```
+### General Commands
+
+- `help` - Show available commands
+- `clear` - Clear the terminal
+- `quit`, `exit` - Close the application
+
+### Data Management
+
+- `new` - Create new data storage
+- `import` - Import existing data
+- `export` - Export your data
+- `logout` - Log out of current session
+
+### Password Management
+
+- `key-list` - View all stored passwords
+- `create-key` - Add a new password entry
+- `edit-key [id]` - Edit existing password
+- `delete-key [id]` - Delete password entry
+- `show-key [id]` - Show password details
+
+## 📁 Project Structure
+
 src/
-├── configs/        # Configuration files
-├── constants/      # Constants
-├── hooks/          # Custom hooks
-├── pages/          # Page components
-├── providers/      # React providers
-├── router/         # Routing configuration
-├── services/       # API and other services
-├── store/          # Zustand store
-├── styles/         # Global styles
-├── types/          # TypeScript types
-├── utils/          # Utility functions
-└── views/          # View components
-```
+├── components/ # Reusable UI components
+├── configs/ # Configuration files
+├── constants/ # Constants and enums
+├── hooks/ # Custom React hooks
+├── layouts/ # Layout components
+├── pages/ # Page components
+├── providers/ # React providers
+├── router/ # Routing configuration
+├── services/ # API and storage services
+├── store/ # Zustand store
+├── styles/ # Global styles
+├── types/ # TypeScript types
+├── utils/ # Utility functions
+└── views/ # View components
 
-## 🔧 Configuration
+## 🔒 Security
 
-### Environment Variables
+- AES encryption for stored passwords
+- No server-side storage - all data is kept locally
+- Encrypted export/import functionality
+
+## 🔧 Environment Variables
 
 Create `.env` files for different environments:
-
-```
 VITE_ENV=development
 VITE_API_URL=your_api_url
-```
-
-### TypeScript
-
-The project includes two TypeScript configurations:
-
-- `tsconfig.app.json` - Application configuration
-- `tsconfig.node.json` - Node.js configuration
-
-### ESLint & Prettier
-
-- ESLint is configured with TypeScript and React rules
-- Prettier is set up with custom formatting rules
-- Pre-commit hooks ensure code quality
 
 ## 🤝 Contributing
 
@@ -106,3 +105,4 @@ The project includes two TypeScript configurations:
 ## 📄 License
 
 This project is licensed under the MIT License.
+````
