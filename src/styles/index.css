@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.guide-message {
+		@apply p-[20px] border-[1px] border-gray-400 rounded-md w-fit h-fit text-gray-400 my-[30px];
+	}
+	.text-error-message {
+		@apply text-red-500 my-[10px];
+	}
+	.text-success-message {
+		@apply text-green-500 my-[10px];
+	}
+	.help-list {
+		@apply text-white space-y-[10px];
+	}
+}
+
+:root {
+	--primary-color: #272b36;
+}
+body {
+	font-family: 'Source Code Pro', monospace;
+}
+
+ul {
+	list-style: disc;
+	margin: 1em 0;
+	padding-left: 40px;
+}
+
+li {
+	display: list-item;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	all: revert;
+	line-height: 1.5;
+}
+
+html {
+	scrollbar-color: #fff var(--primary-color);
+	scrollbar-width: thin;
+}
+
+#terminalEditor {
+	overflow: hidden !important;
+	border-radius: 0 !important;
+}
