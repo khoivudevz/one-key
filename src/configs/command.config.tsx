@@ -198,7 +198,7 @@ const GetCommandConfig = () => {
 		help: () => (
 			<div>
 				<ul className='help-list'>
-					<li>code: Enter your code</li>
+					<li>code: Unlock your data</li>
 					<li>logout: Logout</li>
 					<li>help: Show help</li>
 				</ul>
