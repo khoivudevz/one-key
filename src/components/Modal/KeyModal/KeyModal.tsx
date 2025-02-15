@@ -1,12 +1,15 @@
 import useActionStore from '@/store/useAction.store'
-import Modal from '../Modal'
-import Input from '../../Input'
-import {useForm} from 'react-hook-form'
 import useKeyStore from '@/store/useKey.store'
+import {useForm} from 'react-hook-form'
 import {v4 as uuidv4} from 'uuid'
+import Input from '../../Input'
+import Modal from '../Modal'
 
 import {useEffect, useState} from 'react'
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
+
+import {handleGeneratePwd} from '@/utils/generatePwd'
+import {WiStars} from 'react-icons/wi'
 
 const KeyModal = () => {
 	const {
@@ -106,6 +109,11 @@ const KeyModal = () => {
 								onClick={() => setShowPassword(true)}
 							/>
 						)}
+
+						<WiStars
+							onClick={() => handleGeneratePwd(setValue, 'password')}
+							className='w-5 h-5 text-white cursor-pointer'
+						/>
 					</div>
 					<Input
 						label='Description'

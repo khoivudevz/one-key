@@ -9,6 +9,8 @@ import {
 } from '@/services/localStorage.service'
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
 import {useEffect, useState} from 'react'
+import {WiStars} from 'react-icons/wi'
+import {handleGeneratePwd} from '@/utils/generatePwd'
 
 const UserModal = () => {
 	const {
@@ -103,6 +105,10 @@ const UserModal = () => {
 									onClick={() => setShowCode(true)}
 								/>
 							)}
+							<WiStars
+								onClick={() => handleGeneratePwd(setValue, 'code')}
+								className='w-5 h-5 text-white cursor-pointer'
+							/>
 						</div>
 						<p className='text-sm text-white mt-[10px]'>
 							This code will be use to authenticate your account. Please

@@ -1,16 +1,16 @@
-import useActionStore from '@/store/useAction.store'
-import Modal from '../Modal'
-import Input from '../../Input'
-import {useForm} from 'react-hook-form'
-import useKeyStore from '@/store/useKey.store'
-import {useState} from 'react'
-import {FaEye, FaEyeSlash} from 'react-icons/fa'
-import {decrypt} from '@/utils/auth'
-import useUserStore from '@/store/useUser.store'
 import {
 	localStorageKey,
 	localStorageServices,
 } from '@/services/localStorage.service'
+import useActionStore from '@/store/useAction.store'
+import useKeyStore from '@/store/useKey.store'
+import useUserStore from '@/store/useUser.store'
+import {decrypt} from '@/utils/auth'
+import {useState} from 'react'
+import {useForm} from 'react-hook-form'
+import {FaEye, FaEyeSlash} from 'react-icons/fa'
+import Input from '../../Input'
+import Modal from '../Modal'
 
 const LoginModal = () => {
 	const {

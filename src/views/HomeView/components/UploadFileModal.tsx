@@ -9,6 +9,7 @@ import useUserStore from '@/store/useUser.store'
 import {decrypt} from '@/utils/auth'
 import {useEffect, useState} from 'react'
 import {FileUploader} from 'react-drag-drop-files'
+import {FaEye, FaEyeSlash} from 'react-icons/fa'
 
 const UploadFileModal = () => {
 	const {setKey} = useKeyStore()
@@ -18,6 +19,8 @@ const UploadFileModal = () => {
 	const [file, setFile] = useState<File | null>(null)
 	const [unlockCode, setUnlockCode] = useState<string>('')
 	const [encrypted, setEncrypted] = useState<string | null>(null)
+
+	const [showCode, setShowCode] = useState(false)
 
 	const handleChange = (file: File) => {
 		setFile(file)
@@ -100,12 +103,25 @@ const UploadFileModal = () => {
 					<div>
 						<div className='flex items-center justify-center space-x-[10px]'>
 							<p className='text-xl text-white'>Code</p>:{' '}
-							<input
-								type='text'
-								className='rounded-md bg outline-none border-[1px] border-solid border-white bg-[#272B36] text-white px-5 py-3'
-								onChange={(e) => setUnlockCode(e.target.value)}
-								value={unlockCode}
-							/>
+							<div className='flex items-center justify-between space-x-[10px]'>
+								<input
+									type={showCode ? 'text' : 'password'}
+									className='rounded-md bg outline-none border-[1px] border-solid border-white bg-[#272B36] text-white px-5 py-3'
+									onChange={(e) => setUnlockCode(e.target.value)}
+									value={unlockCode}
+								/>
+								{showCode ? (
+									<FaEye
+										className='w-5 h-5 text-white cursor-pointer'
+										onClick={() => setShowCode(false)}
+									/>
+								) : (
+									<FaEyeSlash
+										className='w-5 h-5 text-white cursor-pointer'
+										onClick={() => setShowCode(true)}
+									/>
+								)}
+							</div>
 						</div>
 
 						<div className='flex items-center justify-center space-x-[10px] mt-[20px]'>
